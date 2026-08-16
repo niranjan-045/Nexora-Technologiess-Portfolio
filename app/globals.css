@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-alt: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fafaf9;
+  color: #0b0b0c;
+}
+
+::selection {
+  background: rgba(255, 107, 0, 0.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.35);
+  border-radius: 10px;
+}
+
+/* Marquee track animation (trusted logos + testimonials) */
+@keyframes scrollX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: scrollX 26s linear infinite;
+}
+.animate-marquee-slow {
+  animation: scrollX 40s linear infinite;
+}
+.animate-marquee:hover,
+.animate-marquee-slow:hover {
+  animation-play-state: paused;
+}
+
+/* Conic gradient spin ring used behind hero avatar */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-ring {
+  animation: spin 9s linear infinite;
+}
+
+/* Glass surface shared by cards across the site */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(11, 11, 12, 0.08);
+}
+
+/* Floating label form fields (site + admin share this pattern) */
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+}
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:focus + label,
+.field textarea:not(:placeholder-shown) + label {
+  top: -9px;
+  font-size: 12px;
+  color: #ff6b00;
+  font-weight: 600;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
